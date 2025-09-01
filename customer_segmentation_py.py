@@ -11,16 +11,25 @@ st.set_page_config(page_title="Customer Segmentation Dashboard", layout="wide")
 st.title("📊 Customer Segmentation Dashboard")
 st.write("Analyze customer behavior and segment them using clustering techniques.")
 
-# File Upload
-uploaded_file = st.file_uploader("📂 Upload your CSV file", type=["csv"])
+# File Upload (CSV + Excel Support)
+uploaded_file = st.file_uploader("📂 Upload your file", type=["csv", "xlsx"])
 
 if uploaded_file:
-    # Read the uploaded CSV
-    df = pd.read_csv(uploaded_file)
+    # Read CSV or Excel dynamically
+    try:
+        if uploaded_file.name.endswith(".csv"):
+            df = pd.read_csv(uploaded_file)
+        else:
+            df = pd.read_excel(uploaded_file)
+    except Exception as e:
+        st.error(f"⚠️ Error reading the file: {e}")
+        st.stop()
+
+    # Show raw data preview
     st.subheader("📌 Raw Data Preview")
     st.dataframe(df.head())
 
-    # Convert date column to datetime
+    # Convert date column to datetime if exists
     if 'last_order' in df.columns:
         df['last_order'] = pd.to_datetime(df['last_order'], errors='coerce')
 
@@ -30,12 +39,10 @@ if uploaded_file:
     # Calculate RFM Metrics
     st.subheader("📌 Calculating RFM Metrics")
     today = dt.datetime.today()
-
     df['Recency'] = (today - df['last_order']).dt.days
     df.rename(columns={'n_order': 'Frequency', 'AVG_Value': 'Monetary'}, inplace=True)
 
     rfm_df = df[['customer_phone', 'Recency', 'Frequency', 'Monetary']].copy()
-
     st.dataframe(rfm_df.head())
 
     # Scale the RFM data
@@ -86,7 +93,7 @@ if uploaded_file:
     )
 
 else:
-    st.info("👆 Please upload a CSV file to get started.")
+    st.info("👆 Please upload a CSV or Excel file to get started.")
 
 st.markdown("---")
 st.caption("Developed by Haitham Hassan | Growth & Performance Analytics")
