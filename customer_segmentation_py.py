@@ -1,559 +1,92 @@
-{
-  "nbformat": 4,
-  "nbformat_minor": 0,
-  "metadata": {
-    "colab": {
-      "provenance": [],
-      "authorship_tag": "ABX9TyMQ2d8a8cJqUq3bmMY4iXFJ",
-      "include_colab_link": true
-    },
-    "kernelspec": {
-      "name": "python3",
-      "display_name": "Python 3"
-    },
-    "language_info": {
-      "name": "python"
-    }
-  },
-  "cells": [
-    {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "view-in-github",
-        "colab_type": "text"
-      },
-      "source": [
-        "<a href=\"https://colab.research.google.com/github/elhaithamy/customer_segmentation_project/blob/main/customer_segmentation_py.ipynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "execution_count": null,
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 373
-        },
-        "id": "eOGlbAvAOK1l",
-        "outputId": "374bbf14-3720-465a-d285-1d113c4dfce4"
-      },
-      "outputs": [
-        {
-          "output_type": "error",
-          "ename": "FileNotFoundError",
-          "evalue": "[Errno 2] No such file or directory: 'customer_data.csv'",
-          "traceback": [
-            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
-            "\u001b[0;31mFileNotFoundError\u001b[0m                         Traceback (most recent call last)",
-            "\u001b[0;32m/tmp/ipython-input-3255724760.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     16\u001b[0m \u001b[0;31m# 2. LOAD DATA\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     17\u001b[0m \u001b[0;31m# ===========================\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 18\u001b[0;31m \u001b[0mdf\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mpd\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mread_csv\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"customer_data.csv\"\u001b[0m\u001b[0;34m)\u001b[0m  \u001b[0;31m# Replace with your dataset path\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     19\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     20\u001b[0m \u001b[0;31m# Preview the dataset\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/pandas/io/parsers/readers.py\u001b[0m in \u001b[0;36mread_csv\u001b[0;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)\u001b[0m\n\u001b[1;32m   1024\u001b[0m     \u001b[0mkwds\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mupdate\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mkwds_defaults\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1025\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1026\u001b[0;31m     \u001b[0;32mreturn\u001b[0m \u001b[0m_read\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfilepath_or_buffer\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1027\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1028\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/pandas/io/parsers/readers.py\u001b[0m in \u001b[0;36m_read\u001b[0;34m(filepath_or_buffer, kwds)\u001b[0m\n\u001b[1;32m    618\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    619\u001b[0m     \u001b[0;31m# Create the parser.\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 620\u001b[0;31m     \u001b[0mparser\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mTextFileReader\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mfilepath_or_buffer\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    621\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    622\u001b[0m     \u001b[0;32mif\u001b[0m \u001b[0mchunksize\u001b[0m \u001b[0;32mor\u001b[0m \u001b[0miterator\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/pandas/io/parsers/readers.py\u001b[0m in \u001b[0;36m__init__\u001b[0;34m(self, f, engine, **kwds)\u001b[0m\n\u001b[1;32m   1618\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1619\u001b[0m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mhandles\u001b[0m\u001b[0;34m:\u001b[0m \u001b[0mIOHandles\u001b[0m \u001b[0;34m|\u001b[0m \u001b[0;32mNone\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1620\u001b[0;31m         \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_engine\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_make_engine\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mf\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mengine\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1621\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1622\u001b[0m     \u001b[0;32mdef\u001b[0m \u001b[0mclose\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m->\u001b[0m \u001b[0;32mNone\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/pandas/io/parsers/readers.py\u001b[0m in \u001b[0;36m_make_engine\u001b[0;34m(self, f, engine)\u001b[0m\n\u001b[1;32m   1878\u001b[0m                 \u001b[0;32mif\u001b[0m \u001b[0;34m\"b\"\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mmode\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1879\u001b[0m                     \u001b[0mmode\u001b[0m \u001b[0;34m+=\u001b[0m \u001b[0;34m\"b\"\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-> 1880\u001b[0;31m             self.handles = get_handle(\n\u001b[0m\u001b[1;32m   1881\u001b[0m                 \u001b[0mf\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1882\u001b[0m                 \u001b[0mmode\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;32m/usr/local/lib/python3.12/dist-packages/pandas/io/common.py\u001b[0m in \u001b[0;36mget_handle\u001b[0;34m(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)\u001b[0m\n\u001b[1;32m    871\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mioargs\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mencoding\u001b[0m \u001b[0;32mand\u001b[0m \u001b[0;34m\"b\"\u001b[0m \u001b[0;32mnot\u001b[0m \u001b[0;32min\u001b[0m \u001b[0mioargs\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mmode\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    872\u001b[0m             \u001b[0;31m# Encoding\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 873\u001b[0;31m             handle = open(\n\u001b[0m\u001b[1;32m    874\u001b[0m                 \u001b[0mhandle\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    875\u001b[0m                 \u001b[0mioargs\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mmode\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;31mFileNotFoundError\u001b[0m: [Errno 2] No such file or directory: 'customer_data.csv'"
-          ]
-        }
-      ],
-      "source": [
-        "# ===========================\n",
-        "# CUSTOMER SEGMENTATION MODEL\n",
-        "# ===========================\n",
-        "\n",
-        "# 1. IMPORT LIBRARIES\n",
-        "import pandas as pd\n",
-        "import numpy as np\n",
-        "import matplotlib.pyplot as plt\n",
-        "import seaborn as sns\n",
-        "\n",
-        "from sklearn.preprocessing import StandardScaler\n",
-        "from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN, AffinityPropagation\n",
-        "from sklearn.metrics import silhouette_score\n",
-        "\n",
-        "# ===========================\n",
-        "# 2. LOAD DATA\n",
-        "# ===========================\n",
-        "df = pd.read_csv(\"customer_data.csv\")  # Replace with your dataset path\n",
-        "\n",
-        "# Preview the dataset\n",
-        "print(\"Dataset Shape:\", df.shape)\n",
-        "print(df.head())\n",
-        "\n",
-        "# ===========================\n",
-        "# 3. DATA CLEANING & FEATURE ENGINEERING\n",
-        "# ===========================\n",
-        "# Convert last_order to datetime\n",
-        "df[\"last_order\"] = pd.to_datetime(df[\"last_order\"], errors=\"coerce\")\n",
-        "\n",
-        "# Create RFM Metrics\n",
-        "df[\"Recency\"] = df[\"days_since_last_order\"]\n",
-        "df[\"Frequency\"] = df[\"n_order\"]\n",
-        "df[\"Monetary\"] = df[\"AVG_Value\"]\n",
-        "\n",
-        "# Select relevant features for clustering\n",
-        "features = df[[\"Recency\", \"Frequency\", \"Monetary\"]].copy()\n",
-        "\n",
-        "# Fill missing values\n",
-        "features.fillna(0, inplace=True)\n",
-        "\n",
-        "# Standardize the data\n",
-        "scaler = StandardScaler()\n",
-        "scaled_features = scaler.fit_transform(features)\n",
-        "\n",
-        "# ===========================\n",
-        "# 4. KMEANS CLUSTERING\n",
-        "# ===========================\n",
-        "print(\"\\n===== KMEANS CLUSTERING =====\")\n",
-        "# Find optimal number of clusters using Elbow Method\n",
-        "inertia = []\n",
-        "K = range(2, 10)\n",
-        "for k in K:\n",
-        "    km = KMeans(n_clusters=k, random_state=42)\n",
-        "    km.fit(scaled_features)\n",
-        "    inertia.append(km.inertia_)\n",
-        "\n",
-        "plt.figure(figsize=(6, 4))\n",
-        "plt.plot(K, inertia, 'bx-')\n",
-        "plt.xlabel('Number of Clusters')\n",
-        "plt.ylabel('Inertia')\n",
-        "plt.title('Elbow Method For Optimal k')\n",
-        "plt.show()\n",
-        "\n",
-        "# Train KMeans with optimal clusters (e.g., k=4)\n",
-        "kmeans = KMeans(n_clusters=4, random_state=42)\n",
-        "df[\"KMeans_Cluster\"] = kmeans.fit_predict(scaled_features)\n",
-        "print(df.groupby(\"KMeans_Cluster\")[[\"Recency\", \"Frequency\", \"Monetary\"]].mean())\n",
-        "\n",
-        "# ===========================\n",
-        "# 5. HIERARCHICAL CLUSTERING\n",
-        "# ===========================\n",
-        "print(\"\\n===== AGGLOMERATIVE CLUSTERING =====\")\n",
-        "agg = AgglomerativeClustering(n_clusters=4)\n",
-        "df[\"Agglo_Cluster\"] = agg.fit_predict(scaled_features)\n",
-        "\n",
-        "# ===========================\n",
-        "# 6. DBSCAN CLUSTERING\n",
-        "# ===========================\n",
-        "print(\"\\n===== DBSCAN CLUSTERING =====\")\n",
-        "db = DBSCAN(eps=1.5, min_samples=5)\n",
-        "df[\"DBSCAN_Cluster\"] = db.fit_predict(scaled_features)\n",
-        "\n",
-        "# ===========================\n",
-        "# 7. AFFINITY PROPAGATION\n",
-        "# ===========================\n",
-        "print(\"\\n===== AFFINITY PROPAGATION =====\")\n",
-        "ap = AffinityPropagation(random_state=42)\n",
-        "df[\"Affinity_Cluster\"] = ap.fit_predict(scaled_features)\n",
-        "\n",
-        "# ===========================\n",
-        "# 8. CLUSTER EVALUATION\n",
-        "# ===========================\n",
-        "print(\"\\n===== CLUSTERING PERFORMANCE =====\")\n",
-        "try:\n",
-        "    score = silhouette_score(scaled_features, df[\"KMeans_Cluster\"])\n",
-        "    print(f\"Silhouette Score (KMeans): {score:.3f}\")\n",
-        "except:\n",
-        "    print(\"Silhouette Score could not be calculated.\")\n",
-        "\n",
-        "# ===========================\n",
-        "# 9. VISUALIZE SEGMENTS\n",
-        "# ===========================\n",
-        "plt.figure(figsize=(8, 5))\n",
-        "sns.scatterplot(\n",
-        "    x=df[\"Frequency\"], y=df[\"Monetary\"],\n",
-        "    hue=df[\"KMeans_Cluster\"], palette=\"viridis\", s=60\n",
-        ")\n",
-        "plt.title(\"Customer Segments by KMeans\")\n",
-        "plt.xlabel(\"Purchase Frequency\")\n",
-        "plt.ylabel(\"Monetary Value\")\n",
-        "plt.legend(title=\"Cluster\")\n",
-        "plt.show()\n",
-        "\n",
-        "# ===========================\n",
-        "# 10. EXPORT RESULTS\n",
-        "# ===========================\n",
-        "df.to_csv(\"segmented_customers.csv\", index=False)\n",
-        "print(\"\\nSegmented customers saved as 'segmented_customers.csv'\")\n",
-        "\n",
-        "# ===========================\n",
-        "# END OF SCRIPT\n",
-        "# ===========================\n"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 56
-        },
-        "id": "379f2317",
-        "outputId": "4ef5d9d1-89be-4a8b-e695-27e4d51b7f40"
-      },
-      "source": [
-        "from google.colab import files\n",
-        "\n",
-        "uploaded = files.upload()\n",
-        "\n",
-        "for fn in uploaded.keys():\n",
-        "  print('User uploaded file \"{name}\" with length {length} bytes'.format(\n",
-        "      name=fn, length=len(uploaded[fn])))"
-      ],
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "display_data",
-          "data": {
-            "text/plain": [
-              "<IPython.core.display.HTML object>"
-            ],
-            "text/html": [
-              "\n",
-              "     <input type=\"file\" id=\"files-a73bd9c0-dc24-4083-9e8c-b92e4c74c6c3\" name=\"files[]\" multiple disabled\n",
-              "        style=\"border:none\" />\n",
-              "     <output id=\"result-a73bd9c0-dc24-4083-9e8c-b92e4c74c6c3\">\n",
-              "      Upload widget is only available when the cell has been executed in the\n",
-              "      current browser session. Please rerun this cell to enable.\n",
-              "      </output>\n",
-              "      <script>// Copyright 2017 Google LLC\n",
-              "//\n",
-              "// Licensed under the Apache License, Version 2.0 (the \"License\");\n",
-              "// you may not use this file except in compliance with the License.\n",
-              "// You may obtain a copy of the License at\n",
-              "//\n",
-              "//      http://www.apache.org/licenses/LICENSE-2.0\n",
-              "//\n",
-              "// Unless required by applicable law or agreed to in writing, software\n",
-              "// distributed under the License is distributed on an \"AS IS\" BASIS,\n",
-              "// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.\n",
-              "// See the License for the specific language governing permissions and\n",
-              "// limitations under the License.\n",
-              "\n",
-              "/**\n",
-              " * @fileoverview Helpers for google.colab Python module.\n",
-              " */\n",
-              "(function(scope) {\n",
-              "function span(text, styleAttributes = {}) {\n",
-              "  const element = document.createElement('span');\n",
-              "  element.textContent = text;\n",
-              "  for (const key of Object.keys(styleAttributes)) {\n",
-              "    element.style[key] = styleAttributes[key];\n",
-              "  }\n",
-              "  return element;\n",
-              "}\n",
-              "\n",
-              "// Max number of bytes which will be uploaded at a time.\n",
-              "const MAX_PAYLOAD_SIZE = 100 * 1024;\n",
-              "\n",
-              "function _uploadFiles(inputId, outputId) {\n",
-              "  const steps = uploadFilesStep(inputId, outputId);\n",
-              "  const outputElement = document.getElementById(outputId);\n",
-              "  // Cache steps on the outputElement to make it available for the next call\n",
-              "  // to uploadFilesContinue from Python.\n",
-              "  outputElement.steps = steps;\n",
-              "\n",
-              "  return _uploadFilesContinue(outputId);\n",
-              "}\n",
-              "\n",
-              "// This is roughly an async generator (not supported in the browser yet),\n",
-              "// where there are multiple asynchronous steps and the Python side is going\n",
-              "// to poll for completion of each step.\n",
-              "// This uses a Promise to block the python side on completion of each step,\n",
-              "// then passes the result of the previous step as the input to the next step.\n",
-              "function _uploadFilesContinue(outputId) {\n",
-              "  const outputElement = document.getElementById(outputId);\n",
-              "  const steps = outputElement.steps;\n",
-              "\n",
-              "  const next = steps.next(outputElement.lastPromiseValue);\n",
-              "  return Promise.resolve(next.value.promise).then((value) => {\n",
-              "    // Cache the last promise value to make it available to the next\n",
-              "    // step of the generator.\n",
-              "    outputElement.lastPromiseValue = value;\n",
-              "    return next.value.response;\n",
-              "  });\n",
-              "}\n",
-              "\n",
-              "/**\n",
-              " * Generator function which is called between each async step of the upload\n",
-              " * process.\n",
-              " * @param {string} inputId Element ID of the input file picker element.\n",
-              " * @param {string} outputId Element ID of the output display.\n",
-              " * @return {!Iterable<!Object>} Iterable of next steps.\n",
-              " */\n",
-              "function* uploadFilesStep(inputId, outputId) {\n",
-              "  const inputElement = document.getElementById(inputId);\n",
-              "  inputElement.disabled = false;\n",
-              "\n",
-              "  const outputElement = document.getElementById(outputId);\n",
-              "  outputElement.innerHTML = '';\n",
-              "\n",
-              "  const pickedPromise = new Promise((resolve) => {\n",
-              "    inputElement.addEventListener('change', (e) => {\n",
-              "      resolve(e.target.files);\n",
-              "    });\n",
-              "  });\n",
-              "\n",
-              "  const cancel = document.createElement('button');\n",
-              "  inputElement.parentElement.appendChild(cancel);\n",
-              "  cancel.textContent = 'Cancel upload';\n",
-              "  const cancelPromise = new Promise((resolve) => {\n",
-              "    cancel.onclick = () => {\n",
-              "      resolve(null);\n",
-              "    };\n",
-              "  });\n",
-              "\n",
-              "  // Wait for the user to pick the files.\n",
-              "  const files = yield {\n",
-              "    promise: Promise.race([pickedPromise, cancelPromise]),\n",
-              "    response: {\n",
-              "      action: 'starting',\n",
-              "    }\n",
-              "  };\n",
-              "\n",
-              "  cancel.remove();\n",
-              "\n",
-              "  // Disable the input element since further picks are not allowed.\n",
-              "  inputElement.disabled = true;\n",
-              "\n",
-              "  if (!files) {\n",
-              "    return {\n",
-              "      response: {\n",
-              "        action: 'complete',\n",
-              "      }\n",
-              "    };\n",
-              "  }\n",
-              "\n",
-              "  for (const file of files) {\n",
-              "    const li = document.createElement('li');\n",
-              "    li.append(span(file.name, {fontWeight: 'bold'}));\n",
-              "    li.append(span(\n",
-              "        `(${file.type || 'n/a'}) - ${file.size} bytes, ` +\n",
-              "        `last modified: ${\n",
-              "            file.lastModifiedDate ? file.lastModifiedDate.toLocaleDateString() :\n",
-              "                                    'n/a'} - `));\n",
-              "    const percent = span('0% done');\n",
-              "    li.appendChild(percent);\n",
-              "\n",
-              "    outputElement.appendChild(li);\n",
-              "\n",
-              "    const fileDataPromise = new Promise((resolve) => {\n",
-              "      const reader = new FileReader();\n",
-              "      reader.onload = (e) => {\n",
-              "        resolve(e.target.result);\n",
-              "      };\n",
-              "      reader.readAsArrayBuffer(file);\n",
-              "    });\n",
-              "    // Wait for the data to be ready.\n",
-              "    let fileData = yield {\n",
-              "      promise: fileDataPromise,\n",
-              "      response: {\n",
-              "        action: 'continue',\n",
-              "      }\n",
-              "    };\n",
-              "\n",
-              "    // Use a chunked sending to avoid message size limits. See b/62115660.\n",
-              "    let position = 0;\n",
-              "    do {\n",
-              "      const length = Math.min(fileData.byteLength - position, MAX_PAYLOAD_SIZE);\n",
-              "      const chunk = new Uint8Array(fileData, position, length);\n",
-              "      position += length;\n",
-              "\n",
-              "      const base64 = btoa(String.fromCharCode.apply(null, chunk));\n",
-              "      yield {\n",
-              "        response: {\n",
-              "          action: 'append',\n",
-              "          file: file.name,\n",
-              "          data: base64,\n",
-              "        },\n",
-              "      };\n",
-              "\n",
-              "      let percentDone = fileData.byteLength === 0 ?\n",
-              "          100 :\n",
-              "          Math.round((position / fileData.byteLength) * 100);\n",
-              "      percent.textContent = `${percentDone}% done`;\n",
-              "\n",
-              "    } while (position < fileData.byteLength);\n",
-              "  }\n",
-              "\n",
-              "  // All done.\n",
-              "  yield {\n",
-              "    response: {\n",
-              "      action: 'complete',\n",
-              "    }\n",
-              "  };\n",
-              "}\n",
-              "\n",
-              "scope.google = scope.google || {};\n",
-              "scope.google.colab = scope.google.colab || {};\n",
-              "scope.google.colab._files = {\n",
-              "  _uploadFiles,\n",
-              "  _uploadFilesContinue,\n",
-              "};\n",
-              "})(self);\n",
-              "</script> "
-            ]
-          },
-          "metadata": {}
-        }
-      ]
-    },
-    {
-      "cell_type": "code",
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 211
-        },
-        "id": "6fd9455e",
-        "outputId": "eb35aa11-e653-4c62-be62-0e5cfefdc164"
-      },
-      "source": [
-        "# ===========================\n",
-        "# CUSTOMER SEGMENTATION MODEL\n",
-        "# ===========================\n",
-        "\n",
-        "# 1. IMPORT LIBRARIES\n",
-        "import pandas as pd\n",
-        "import numpy as np\n",
-        "import matplotlib.pyplot as plt\n",
-        "import seaborn as sns\n",
-        "import io\n",
-        "from google.colab import files\n",
-        "\n",
-        "from sklearn.preprocessing import StandardScaler\n",
-        "from sklearn.cluster import KMeans, AgglomerativeClustering, DBSCAN, AffinityPropagation\n",
-        "from sklearn.metrics import silhouette_score\n",
-        "\n",
-        "# ===========================\n",
-        "# 2. LOAD DATA\n",
-        "# ===========================\n",
-        "print(\"Please upload your Excel file.\")\n",
-        "uploaded = files.upload()\n",
-        "\n",
-        "# Assuming the uploaded file is an Excel file\n",
-        "for filename in uploaded.keys():\n",
-        "  uploaded_file = uploaded[filename]\n",
-        "  df = pd.read_excel(io.BytesIO(uploaded_file))\n",
-        "  break # Assuming only one file is uploaded\n",
-        "\n",
-        "# Preview the dataset\n",
-        "print(\"Dataset Shape:\", df.shape)\n",
-        "print(df.head())\n",
-        "\n",
-        "# ===========================\n",
-        "# 3. DATA CLEANING & FEATURE ENGINEERING\n",
-        "# ===========================\n",
-        "# Convert last_order to datetime\n",
-        "df[\"last_order\"] = pd.to_datetime(df[\"last_order\"], errors=\"coerce\")\n",
-        "\n",
-        "# Create RFM Metrics\n",
-        "df[\"Recency\"] = df[\"days_since_last_order\"]\n",
-        "df[\"Frequency\"] = df[\"n_order\"]\n",
-        "df[\"Monetary\"] = df[\"AVG_Value\"]\n",
-        "\n",
-        "# Select relevant features for clustering\n",
-        "features = df[[\"Recency\", \"Frequency\", \"Monetary\"]].copy()\n",
-        "\n",
-        "# Fill missing values\n",
-        "features.fillna(0, inplace=True)\n",
-        "\n",
-        "# Standardize the data\n",
-        "scaler = StandardScaler()\n",
-        "scaled_features = scaler.fit_transform(features)\n",
-        "\n",
-        "# ===========================\n",
-        "# 4. KMEANS CLUSTERING\n",
-        "# ===========================\n",
-        "print(\"\\n===== KMEANS CLUSTERING =====\")\n",
-        "# Find optimal number of clusters using Elbow Method\n",
-        "inertia = []\n",
-        "K = range(2, 10)\n",
-        "for k in K:\n",
-        "    km = KMeans(n_clusters=k, random_state=42)\n",
-        "    km.fit(scaled_features)\n",
-        "    inertia.append(km.inertia_)\n",
-        "\n",
-        "plt.figure(figsize=(6, 4))\n",
-        "plt.plot(K, inertia, 'bx-')\n",
-        "plt.xlabel('Number of Clusters')\n",
-        "plt.ylabel('Inertia')\n",
-        "plt.title('Elbow Method For Optimal k')\n",
-        "plt.show()\n",
-        "\n",
-        "# Train KMeans with optimal clusters (e.g., k=4)\n",
-        "kmeans = KMeans(n_clusters=4, random_state=42)\n",
-        "df[\"KMeans_Cluster\"] = kmeans.fit_predict(scaled_features)\n",
-        "print(df.groupby(\"KMeans_Cluster\")[[\"Recency\", \"Frequency\", \"Monetary\"]].mean())\n",
-        "\n",
-        "# ===========================\n",
-        "# 5. HIERARCHICAL CLUSTERING\n",
-        "# ===========================\n",
-        "print(\"\\n===== AGGLOMERATIVE CLUSTERING =====\")\n",
-        "agg = AgglomerativeClustering(n_clusters=4)\n",
-        "df[\"Agglo_Cluster\"] = agg.fit_predict(scaled_features)\n",
-        "\n",
-        "# ===========================\n",
-        "# 6. DBSCAN CLUSTERING\n",
-        "# ===========================\n",
-        "print(\"\\n===== DBSCAN CLUSTERING =====\")\n",
-        "db = DBSCAN(eps=1.5, min_samples=5)\n",
-        "df[\"DBSCAN_Cluster\"] = db.fit_predict(scaled_features)\n",
-        "\n",
-        "# ===========================\n",
-        "# 7. AFFINITY PROPAGATION\n",
-        "# ===========================\n",
-        "print(\"\\n===== AFFINITY PROPAGATION =====\")\n",
-        "ap = AffinityPropagation(random_state=42)\n",
-        "df[\"Affinity_Cluster\"] = ap.fit_predict(scaled_features)\n",
-        "\n",
-        "# ===========================\n",
-        "# 8. CLUSTER EVALUATION\n",
-        "# ===========================\n",
-        "print(\"\\n===== CLUSTERING PERFORMANCE =====\")\n",
-        "try:\n",
-        "    score = silhouette_score(scaled_features, df[\"KMeans_Cluster\"])\n",
-        "    print(f\"Silhouette Score (KMeans): {score:.3f}\")\n",
-        "except:\n",
-        "    print(\"Silhouette Score could not be calculated.\")\n",
-        "\n",
-        "# ===========================\n",
-        "# 9. VISUALIZE SEGMENTS\n",
-        "# ===========================\n",
-        "plt.figure(figsize=(8, 5))\n",
-        "sns.scatterplot(\n",
-        "    x=df[\"Frequency\"], y=df[\"Monetary\"],\n",
-        "    hue=df[\"KMeans_Cluster\"], palette=\"viridis\", s=60\n",
-        ")\n",
-        "plt.title(\"Customer Segments by KMeans\")\n",
-        "plt.xlabel(\"Purchase Frequency\")\n",
-        "plt.ylabel(\"Monetary Value\")\n",
-        "plt.legend(title=\"Cluster\")\n",
-        "plt.show()\n",
-        "\n",
-        "# ===========================\n",
-        "# 10. EXPORT RESULTS\n",
-        "# ===========================\n",
-        "df.to_csv(\"segmented_customers.csv\", index=False)\n",
-        "print(\"\\nSegmented customers saved as 'segmented_customers.csv'\")\n",
-        "\n",
-        "# ===========================\n",
-        "# END OF SCRIPT\n",
-        "# ==========================="
-      ],
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "error",
-          "ename": "NameError",
-          "evalue": "name 'uploaded' is not defined",
-          "traceback": [
-            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
-            "\u001b[0;31mNameError\u001b[0m                                 Traceback (most recent call last)",
-            "\u001b[0;32m/tmp/ipython-input-889830692.py\u001b[0m in \u001b[0;36m<cell line: 0>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     20\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     21\u001b[0m \u001b[0;31m# Access the uploaded file directly\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 22\u001b[0;31m \u001b[0;32mfor\u001b[0m \u001b[0mfilename\u001b[0m \u001b[0;32min\u001b[0m \u001b[0muploaded\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mkeys\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     23\u001b[0m   \u001b[0muploaded_file\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0muploaded\u001b[0m\u001b[0;34m[\u001b[0m\u001b[0mfilename\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     24\u001b[0m   \u001b[0mdf\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mpd\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mread_excel\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mio\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mBytesIO\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0muploaded_file\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
-            "\u001b[0;31mNameError\u001b[0m: name 'uploaded' is not defined"
-          ]
-        }
-      ]
-    }
-  ]
-}
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.cluster import KMeans
+from sklearn.preprocessing import StandardScaler
+import datetime as dt
+
+# Streamlit App Title
+st.set_page_config(page_title="Customer Segmentation Dashboard", layout="wide")
+st.title("📊 Customer Segmentation Dashboard")
+st.write("Analyze customer behavior and segment them using clustering techniques.")
+
+# File Upload
+uploaded_file = st.file_uploader("📂 Upload your CSV file", type=["csv"])
+
+if uploaded_file:
+    # Read the uploaded CSV
+    df = pd.read_csv(uploaded_file)
+    st.subheader("📌 Raw Data Preview")
+    st.dataframe(df.head())
+
+    # Convert date column to datetime
+    if 'last_order' in df.columns:
+        df['last_order'] = pd.to_datetime(df['last_order'], errors='coerce')
+
+    # Fill missing values if any
+    df.fillna(0, inplace=True)
+
+    # Calculate RFM Metrics
+    st.subheader("📌 Calculating RFM Metrics")
+    today = dt.datetime.today()
+
+    df['Recency'] = (today - df['last_order']).dt.days
+    df.rename(columns={'n_order': 'Frequency', 'AVG_Value': 'Monetary'}, inplace=True)
+
+    rfm_df = df[['customer_phone', 'Recency', 'Frequency', 'Monetary']].copy()
+
+    st.dataframe(rfm_df.head())
+
+    # Scale the RFM data
+    scaler = StandardScaler()
+    rfm_scaled = scaler.fit_transform(rfm_df[['Recency', 'Frequency', 'Monetary']])
+
+    # KMeans Clustering
+    st.subheader("📌 KMeans Clustering")
+    kmeans = KMeans(n_clusters=4, random_state=42)
+    rfm_df['Cluster'] = kmeans.fit_predict(rfm_scaled)
+
+    # Merge Clusters with Original Data
+    final_df = df.merge(rfm_df[['customer_phone', 'Cluster']], on='customer_phone', how='left')
+
+    # Display Cluster Summary
+    st.subheader("📌 Customer Segments Overview")
+    cluster_summary = final_df.groupby('Cluster').agg({
+        'Recency': 'mean',
+        'Frequency': 'mean',
+        'Monetary': 'mean',
+        'customer_phone': 'count'
+    }).rename(columns={'customer_phone': 'Customer Count'})
+
+    st.dataframe(cluster_summary)
+
+    # Visualize Cluster Sizes
+    st.subheader("📊 Cluster Size Distribution")
+    fig, ax = plt.subplots(figsize=(8, 5))
+    sns.countplot(x='Cluster', data=rfm_df, palette="viridis", ax=ax)
+    ax.set_title("Customer Distribution per Cluster")
+    st.pyplot(fig)
+
+    # Visualize Monetary Value per Cluster
+    st.subheader("📊 Average Monetary Value by Cluster")
+    fig, ax = plt.subplots(figsize=(8, 5))
+    sns.barplot(x=cluster_summary.index, y=cluster_summary['Monetary'], palette="coolwarm", ax=ax)
+    ax.set_title("Average Monetary Value by Cluster")
+    st.pyplot(fig)
+
+    # Download Segmented Data
+    st.subheader("📥 Download Segmented Customer Data")
+    csv_download = final_df.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="Download Segmented Data as CSV",
+        data=csv_download,
+        file_name="segmented_customers.csv",
+        mime="text/csv"
+    )
+
+else:
+    st.info("👆 Please upload a CSV file to get started.")
+
+st.markdown("---")
+st.caption("Developed by Haitham Hassan | Growth & Performance Analytics")
